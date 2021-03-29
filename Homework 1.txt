@@ -1,0 +1,9 @@
+Treba da napravis kopce kadesto koga ke go kliknes (od desno)
+vo website ke se kreira button (CLICK ME)
+koga ke kliknes battenite od desnite
+ke ti naprajit alert
+
+(na dacko ne toj drugiot mu teknaaa na promptovi)
+
+Eden HINT!
+Procitaj dokumentacija za ADD EVENT LISTENER
