@@ -1,10 +1,16 @@
 const builder = document.getElementById("builder");
-document.getElementById("event-builder").addEventListener("click",test);
 const selector = document.getElementById("element-selector");
+const textbox = document.getElementById("inline-text");
+document.getElementById("event-builder").addEventListener("click",test);
+selector.addEventListener("change", selectElement);
+textbox.addEventListener("input", updateElement)
 
+const elements = [];
+let selectedElement = undefined;
+let selectedIndex = 0;
 
 function AddElement(tagname) {
-    let input = document.getElementById("inline-text").value;
+    let input = textbox.value;
     //to be added more Hs
     let newElement = document.createElement(tagname);
     if (input.length == 0 && tagname != "hr") {
@@ -13,16 +19,32 @@ function AddElement(tagname) {
     else if (input.length != 0 && tagname != "hr" ) {
         newElement.innerText = input;
     } 
-    addToSelector(tagname);
+    addToSelector(newElement.innerText);
     builder.appendChild(newElement);
+    elements.push(newElement);
 }
 
-function addToSelector(tagname){
+function addToSelector(name){
     let option = document.createElement("option");
-    option.innerText = tagname;
-    option.value = 1;
+    option.innerText = name;
+    option.value = elements.length;
     selector.appendChild(option);
 
+}
+
+function selectElement(){
+    selectedElement = elements[this.value]
+    selectedIndex = this.value
+    if(selectedElement){
+        textbox.value = selectedElement.innerText
+    }
+}
+
+function updateElement(){
+    if(selectedElement){
+        selectedElement.innerText = textbox.value
+        selector.children[selectedIndex].innerText = textbox.value
+    }
 }
 
 function test(){
